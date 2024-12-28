@@ -2,29 +2,58 @@ import time
 import pandas as pd
 import numpy as np
 
+#Hello and welcome! Feel free to copy this file and utilize it to analyze data.
+
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-def get_filters():
+def get_user_input():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Asks the user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) day - name of the day of the week to filter by, or "all" to apply no day filter
     """
-    print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    print("Hello! Let's explore some US bikeshare data!")
 
+    # Function to validate user input
+    def validate_input(prompt, valid_options):
+        while True:
+            user_input = input(prompt).strip().lower()
+            if user_input in valid_options:
+                return user_input
+            print(f"Invalid input. Please choose from: {', '.join(valid_options)}.")
 
-    # get user input for month (all, january, february, ... , june)
+    # Get user input for city
+    cities = ['chicago', 'new york city', 'washington']
+    city = validate_input("Please select a city (chicago, new york city, washington): ", cities)
 
+    # Get user input for month
+    months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
+    month = validate_input("Please select a month (january to june) or 'all' for no filter: ", months)
 
-    # get user input for day of week (all, monday, tuesday, ... sunday)
+    # Get user input for day of the week
+    days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
+    day = validate_input("Please select a day of the week or 'all' for no filter: ", days)
 
+ # Get user input for day of the week
+    days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
+    day = validate_input("Please select a day of the week or 'all' for no filter: ", days)
 
+    # Ask for additional filters
+    user_types = ['subscriber', 'customer', 'all']
+    user_type = validate_input("Filter by user type (subscriber, customer, or 'all'): ", user_types)
+
+    station = input("Would you like to filter by a specific station? Enter the station name or 'all' for no preference: ").strip()
+
+    print(f"\nYour selections:\nCity = {city.title()}, Month = {month.title()}, Day = {day.title()}, User Type = {user_type.title()}, Station = {station.title()}")
+    return city, month, day, user_type, station
+
+    print(f"\nYou selected: City = {city.title()}, Month = {month.title()}, Day = {day.title()}")
+    return city, month, day
     print('-'*40)
     return city, month, day
 
