@@ -1,0 +1,5 @@
+## Scope of the Project
+This repository is specifically created for a bikeshare analysis project. It is not intended for ongoing development or enhancements.
+
+## How to Use
+Clone this repository, run the provided Python script, and analyze the bikeshare data included in the dataset files.
